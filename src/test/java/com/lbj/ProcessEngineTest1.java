@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProcessEngineTest {
+public class ProcessEngineTest1 {
     //repositoryService的管理流程定义
 
     RepositoryService repositoryService;
@@ -36,16 +36,16 @@ public class ProcessEngineTest {
     @Test
     public  void  doRepositoryService(){
         DeploymentBuilder deployment = repositoryService.createDeployment();
-        deployment.addClasspathResource("diagrams/activiti_leave.bpmn")
-                   .addClasspathResource("diagrams/activiti_leave.png")
+        deployment.addClasspathResource("diagram1/vocation_leave.bpmn")
+                   .addClasspathResource("diagram1/vocation_leave.png")
                    .deploy();
     }
-    /**
+    /**vocation
      * 删除流程部署
      */
     @Test
     public void deleteActivitiDeploy() {
-        String deploymentId = "1";
+        String deploymentId = "601";
         //如果流程已经启动删除会报错
         //repositoryService.deleteDeployment(deploymentId);
         //如果第二个参数是true级联删除，即使有正在运行的数据也会被删除，如果是false非级联删除如果有数据在运行，会报错
@@ -55,7 +55,7 @@ public class ProcessEngineTest {
     //是activiti的流程执行服务类。可以从这个服务类中获取很多关于流程执行相关的信息。
     @Test
     public  void  doRunService(){
-        this.runtimeService.startProcessInstanceByKey("activiti_leave");
+        this.runtimeService.startProcessInstanceByKey("vocation_leave");
     }
 
 
@@ -64,7 +64,7 @@ public class ProcessEngineTest {
      */
     @Test
     public void queryProcessDefinitionByKey() {
-        String processDefinitionKey = "activiti_leave";
+        String processDefinitionKey = "vocation_leave";
 
         List<ProcessDefinition> processDefinitionList = repositoryService.createProcessDefinitionQuery()
                 .processDefinitionKey(processDefinitionKey)
@@ -85,7 +85,7 @@ public class ProcessEngineTest {
     @Test
     public  void  queryProcessInstance(){
         //
-        String processDefinitionKey = "activiti_leave";
+        String processDefinitionKey = "vocation_leave";
         //创建流程实例查询对象
         ProcessInstanceQuery processInstanceQuery = runtimeService.createProcessInstanceQuery();
 
@@ -128,7 +128,7 @@ public class ProcessEngineTest {
     public void  completeTask(){
         String assignee = "employeer";
         List<Task> tasks = this.taskService.createTaskQuery()
-                .processDefinitionKey("activiti_leave")//根据流程定义的key来查询
+                .processDefinitionKey("vocation_leave")//根据流程定义的key来查询
                 .taskAssignee(assignee)//根据办理人来查询
                 .orderByTaskCreateTime()
                 .desc()
@@ -163,7 +163,7 @@ public class ProcessEngineTest {
     public void  completeTaskGoOn(){
         String assignee = "boss";
         List<Task> tasks = this.taskService.createTaskQuery()
-                .processDefinitionKey("activiti_leave")//根据流程定义的key来查询
+                .processDefinitionKey("vocation_leave")//根据流程定义的key来查询
                 .taskAssignee(assignee)//根据办理人来查询
                 .orderByTaskCreateTime()
                 .desc()
