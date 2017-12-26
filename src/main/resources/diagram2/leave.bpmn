@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1514277440326" name="" targetNamespace="http://www.activiti.org/testm1514277440326" typeLanguage="http://www.w3.org/2001/XMLSchema">
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/testm1514277440326" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1514277440326" name="" targetNamespace="http://www.activiti.org/testm1514277440326" typeLanguage="http://www.w3.org/2001/XMLSchema">
   <process id="leave" isClosed="false" isExecutable="true" name="请假单" processType="None">
     <startEvent id="_2" name="StartEvent"/>
     <userTask activiti:assignee="employeer" activiti:exclusive="true" id="employeer" name="员工申请假期"/>
@@ -8,11 +8,11 @@
     <sequenceFlow id="_6" sourceRef="employeer" targetRef="manager"/>
     <userTask activiti:assignee="boss" activiti:exclusive="true" id="boss" name="老板审核"/>
     <sequenceFlow id="_8" name="转交老板审核" sourceRef="manager" targetRef="boss">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[$(outcome=='boss_receive')]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome=='boss_receive'}]]></conditionExpression>
     </sequenceFlow>
     <endEvent id="_9" name="EndEvent"/>
     <sequenceFlow id="_10" name="经理审核" sourceRef="manager" targetRef="_9">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[$(outcome=='manager_receive')]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome=='manager_receive'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="_11" sourceRef="boss" targetRef="_9"/>
   </process>
@@ -48,37 +48,37 @@
           <dc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="_5" id="BPMNEdge__5" sourceElement="_2" targetElement="_3">
-        <di:waypoint x="446.0" y="97.0"/>
+      <bpmndi:BPMNEdge bpmnElement="_5" id="BPMNEdge__5" sourceElement="_2" targetElement="employeer">
+        <di:waypoint x="446.0" y="82.0"/>
         <di:waypoint x="446.0" y="150.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_6" id="BPMNEdge__6" sourceElement="_3" targetElement="_4">
-        <di:waypoint x="447.5" y="220.0"/>
+      <bpmndi:BPMNEdge bpmnElement="_6" id="BPMNEdge__6" sourceElement="employeer" targetElement="manager">
+        <di:waypoint x="447.5" y="205.0"/>
         <di:waypoint x="447.5" y="280.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_8" id="BPMNEdge__8" sourceElement="_4" targetElement="_7">
-        <di:waypoint x="505.0" y="307.5"/>
+      <bpmndi:BPMNEdge bpmnElement="_8" id="BPMNEdge__8" sourceElement="manager" targetElement="boss">
+        <di:waypoint x="490.0" y="307.5"/>
         <di:waypoint x="705.0" y="307.5"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_11" id="BPMNEdge__11" sourceElement="_7" targetElement="_9">
-        <di:waypoint x="760.0" y="350.0"/>
+      <bpmndi:BPMNEdge bpmnElement="_11" id="BPMNEdge__11" sourceElement="boss" targetElement="_9">
+        <di:waypoint x="760.0" y="335.0"/>
         <di:waypoint x="760.0" y="435.0"/>
         <di:waypoint x="477.0" y="466.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_10" id="BPMNEdge__10" sourceElement="_4" targetElement="_9">
-        <di:waypoint x="461.0" y="350.0"/>
+      <bpmndi:BPMNEdge bpmnElement="_10" id="BPMNEdge__10" sourceElement="manager" targetElement="_9">
+        <di:waypoint x="461.0" y="335.0"/>
         <di:waypoint x="461.0" y="450.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>

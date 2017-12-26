@@ -143,6 +143,19 @@ public class ProcessEngineTest2 {
         this.taskService.complete(tasks.get(0).getId(),map);
     }
 
+    @Test
+    public void  completeManagerTask(){
+        String assignee = "manager";
+        List<Task> tasks = this.taskService.createTaskQuery()
+                .processDefinitionKey("leave")//根据流程定义的key来查询
+                .taskAssignee(assignee)//根据办理人来查询
+                .orderByTaskCreateTime()
+                .desc()
+                .list();
+        Map<String ,Object> map =new HashMap<String, Object>();
+        map.put("outcome","boss_receive");
+        this.taskService.complete(tasks.get(0).getId(),map);
+    }
     /**
      * 查询当前的运行实例对象，通过运行实例id
      *
@@ -166,7 +179,7 @@ public class ProcessEngineTest2 {
     public void  completeTaskGoOn(){
         String assignee = "boss";
         List<Task> tasks = this.taskService.createTaskQuery()
-                .processDefinitionKey("vocation_leave")//根据流程定义的key来查询
+                .processDefinitionKey("leave")//根据流程定义的key来查询
                 .taskAssignee(assignee)//根据办理人来查询
                 .orderByTaskCreateTime()
                 .desc()
