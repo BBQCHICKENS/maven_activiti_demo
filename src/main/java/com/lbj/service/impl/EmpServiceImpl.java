@@ -14,7 +14,6 @@ public class EmpServiceImpl implements EmpService {
     @Autowired
     RepositoryService repositoryService;
 
-
     public void getRepositoryService() {
         System.out.println(repositoryService);
     }
