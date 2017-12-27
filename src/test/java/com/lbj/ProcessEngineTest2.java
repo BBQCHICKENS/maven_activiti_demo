@@ -142,6 +142,20 @@ public class ProcessEngineTest2 {
         map.put("请假单",leaveApply);
         this.taskService.complete(tasks.get(0).getId(),map);
     }
+    @Test
+    public void  completeTaskMannger(){
+        String assignee = "manager";
+        List<Task> tasks = this.taskService.createTaskQuery()
+                .processDefinitionKey("leave")//根据流程定义的key来查询
+                .taskAssignee(assignee)//根据办理人来查询
+                .orderByTaskCreateTime()
+                .desc()
+                .list();
+        Map<String ,Object> map =new HashMap<String, Object>();
+        String outcome = "boss_receive";
+        map.put("outcome", outcome);
+        this.taskService.complete(tasks.get(0).getId(),map);
+    }
 
     @Test
     public void  completeManagerTask(){
