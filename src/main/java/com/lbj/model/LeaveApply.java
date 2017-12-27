@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class LeaveApply implements Serializable{
+
+    private static final long serialVersionUID = 914186430587408050L;
+
     private  String reason;
     private  Integer days;
     private Date startTime;
